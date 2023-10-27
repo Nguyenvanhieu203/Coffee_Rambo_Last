@@ -1,0 +1,212 @@
+USE [CoffeShop]
+GO
+/****** Object:  Table [dbo].[BillDetail]    Script Date: 02/10/2023 08:29:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[BillDetail](
+	[IdBill] [int] NULL,
+	[IdDrink] [int] NULL,
+	[Quantity] [int] NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Bills]    Script Date: 02/10/2023 08:29:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Bills](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[IdTable] [int] NULL,
+	[IdStaff] [int] NULL,
+	[CreateDate] [date] NULL,
+	[TotalPrice] [decimal](10, 2) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[detailTable]    Script Date: 02/10/2023 08:29:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[detailTable](
+	[IdTable] [int] NULL,
+	[IdDrinks] [int] NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Drinks]    Script Date: 02/10/2023 08:29:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Drinks](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[IdType] [int] NULL,
+	[NameDrink] [nvarchar](255) NULL,
+	[Price] [decimal](10, 2) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[DrinkType]    Script Date: 02/10/2023 08:29:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[DrinkType](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[NameType] [nvarchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[memberShip]    Script Date: 02/10/2023 08:29:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[memberShip](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[PhoneNumber] [int] NULL,
+	[NameCustomer] [nvarchar](255) NULL,
+	[StartDate] [date] NULL,
+	[Revenue] [decimal](10, 2) NULL,
+	[Score] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Staffs]    Script Date: 02/10/2023 08:29:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Staffs](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[FirstName] [nvarchar](255) NULL,
+	[LastName] [nvarchar](255) NULL,
+	[FullName] [nvarchar](255) NULL,
+	[Dob] [date] NULL,
+	[PasswordHas] [nvarchar](255) NULL,
+	[PhoneNumber] [int] NULL,
+	[Gender] [nvarchar](255) NULL,
+	[HireDate] [date] NULL,
+	[Salary] [decimal](10, 2) NULL,
+	[Position] [nvarchar](255) NULL,
+	[Email] [nvarchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TableFoods]    Script Date: 02/10/2023 08:29:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TableFoods](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[TableName] [nvarchar](255) NULL,
+	[Floors] [nvarchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[Drinks] ON 
+GO
+INSERT [dbo].[Drinks] ([Id], [IdType], [NameDrink], [Price]) VALUES (1, 1, N'Sinh tố xoài', CAST(30000.00 AS Decimal(10, 2)))
+GO
+INSERT [dbo].[Drinks] ([Id], [IdType], [NameDrink], [Price]) VALUES (2, 1, N'Sinh tố dâu', CAST(50000.00 AS Decimal(10, 2)))
+GO
+INSERT [dbo].[Drinks] ([Id], [IdType], [NameDrink], [Price]) VALUES (3, 2, N'Nước Ép cam', CAST(30000.00 AS Decimal(10, 2)))
+GO
+SET IDENTITY_INSERT [dbo].[Drinks] OFF
+GO
+SET IDENTITY_INSERT [dbo].[DrinkType] ON 
+GO
+INSERT [dbo].[DrinkType] ([Id], [NameType]) VALUES (1, N'Sinh tố hoa quả')
+GO
+INSERT [dbo].[DrinkType] ([Id], [NameType]) VALUES (2, N'Nước ép')
+GO
+INSERT [dbo].[DrinkType] ([Id], [NameType]) VALUES (3, N'Caffe máy')
+GO
+INSERT [dbo].[DrinkType] ([Id], [NameType]) VALUES (4, N'Trà sữa')
+GO
+SET IDENTITY_INSERT [dbo].[DrinkType] OFF
+GO
+SET IDENTITY_INSERT [dbo].[memberShip] ON 
+GO
+INSERT [dbo].[memberShip] ([Id], [PhoneNumber], [NameCustomer], [StartDate], [Revenue], [Score]) VALUES (1, 866889311, N'Nguyễn Hồng Quân', CAST(N'2023-10-05' AS Date), CAST(5000000.00 AS Decimal(10, 2)), 2000)
+GO
+SET IDENTITY_INSERT [dbo].[memberShip] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Staffs] ON 
+GO
+INSERT [dbo].[Staffs] ([Id], [FirstName], [LastName], [FullName], [Dob], [PasswordHas], [PhoneNumber], [Gender], [HireDate], [Salary], [Position], [Email]) VALUES (1, N'Le', N'Minh', N'Minh Le', CAST(N'2003-03-02' AS Date), N'MinhLe0203', 869819316, N'Nam', CAST(N'2023-08-25' AS Date), NULL, NULL, N'Minh0203@gmail.com')
+GO
+INSERT [dbo].[Staffs] ([Id], [FirstName], [LastName], [FullName], [Dob], [PasswordHas], [PhoneNumber], [Gender], [HireDate], [Salary], [Position], [Email]) VALUES (2, N'Le', N'Minh', N'Le Anh Minh', CAST(N'2003-03-02' AS Date), N'MinhLe0203', 869819316, N'Nam', CAST(N'2023-02-25' AS Date), CAST(10000000.00 AS Decimal(10, 2)), N'Thu ngân', N'AnhMinh0203@gmail.com')
+GO
+INSERT [dbo].[Staffs] ([Id], [FirstName], [LastName], [FullName], [Dob], [PasswordHas], [PhoneNumber], [Gender], [HireDate], [Salary], [Position], [Email]) VALUES (4, N'Nguyễn', N'Hiếu', N'Nguyễn Hiếu', CAST(N'0029-07-26' AS Date), N'Hieu2003@', 388089507, N'Nam', NULL, NULL, NULL, N'hieu@gmail.com')
+GO
+SET IDENTITY_INSERT [dbo].[Staffs] OFF
+GO
+SET IDENTITY_INSERT [dbo].[TableFoods] ON 
+GO
+INSERT [dbo].[TableFoods] ([Id], [TableName], [Floors]) VALUES (1, N'Ban 1', N'Tầng 1')
+GO
+INSERT [dbo].[TableFoods] ([Id], [TableName], [Floors]) VALUES (2, N'Ban 2', N'Tầng 1')
+GO
+INSERT [dbo].[TableFoods] ([Id], [TableName], [Floors]) VALUES (3, N'Ban 3', N'Tầng 1')
+GO
+INSERT [dbo].[TableFoods] ([Id], [TableName], [Floors]) VALUES (4, N'Ban 4', N'Tầng 2')
+GO
+INSERT [dbo].[TableFoods] ([Id], [TableName], [Floors]) VALUES (5, N'Ban 5', N'Tầng 3')
+GO
+INSERT [dbo].[TableFoods] ([Id], [TableName], [Floors]) VALUES (6, N'Ban 6', N'Tầng 3')
+GO
+INSERT [dbo].[TableFoods] ([Id], [TableName], [Floors]) VALUES (7, N'Ban 3', N'Tầng 1')
+GO
+INSERT [dbo].[TableFoods] ([Id], [TableName], [Floors]) VALUES (8, N'Ban 3', N'Tầng 1')
+GO
+INSERT [dbo].[TableFoods] ([Id], [TableName], [Floors]) VALUES (9, N'Ban 3', N'Tầng 1')
+GO
+INSERT [dbo].[TableFoods] ([Id], [TableName], [Floors]) VALUES (10, N'Ban 7', N'Tầng 1')
+GO
+INSERT [dbo].[TableFoods] ([Id], [TableName], [Floors]) VALUES (11, N'Ban 8', N'Tầng 1')
+GO
+SET IDENTITY_INSERT [dbo].[TableFoods] OFF
+GO
+ALTER TABLE [dbo].[BillDetail]  WITH CHECK ADD FOREIGN KEY([IdBill])
+REFERENCES [dbo].[Bills] ([Id])
+GO
+ALTER TABLE [dbo].[BillDetail]  WITH CHECK ADD FOREIGN KEY([IdDrink])
+REFERENCES [dbo].[Drinks] ([Id])
+GO
+ALTER TABLE [dbo].[Bills]  WITH CHECK ADD FOREIGN KEY([IdStaff])
+REFERENCES [dbo].[Staffs] ([Id])
+GO
+ALTER TABLE [dbo].[Bills]  WITH CHECK ADD FOREIGN KEY([IdTable])
+REFERENCES [dbo].[TableFoods] ([Id])
+GO
+ALTER TABLE [dbo].[detailTable]  WITH CHECK ADD FOREIGN KEY([IdDrinks])
+REFERENCES [dbo].[Drinks] ([Id])
+GO
+ALTER TABLE [dbo].[detailTable]  WITH CHECK ADD FOREIGN KEY([IdTable])
+REFERENCES [dbo].[TableFoods] ([Id])
+GO
+ALTER TABLE [dbo].[Drinks]  WITH CHECK ADD FOREIGN KEY([IdType])
+REFERENCES [dbo].[DrinkType] ([Id])
+GO
